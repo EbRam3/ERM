@@ -1,9 +1,10 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:trial15/pages/login_page.dart';
-import 'package:trial15/pages/logo_page.dart';
+import 'package:trial15/utils/theme.dart';
+
 import 'pages/home_page.dart';
 import 'pages/event_list_page.dart';
+import 'pages/logo_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,10 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-      home: Login(),
+      theme: appTheme,
+      home: MyHomePage(),
       //  MainNavigation(),
     );
   }
@@ -57,8 +56,12 @@ class _MainNavigationState extends State<MainNavigation> {
             icon: Icon(Icons.event),
             label: 'Events',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
-        selectedItemColor: Colors.deepPurple,
+        // selectedItemColor: Colors.deepPurple,
       ),
     );
   }

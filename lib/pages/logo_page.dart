@@ -80,6 +80,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:trial15/pages/login_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -151,7 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderRadius: BorderRadius.all(Radius.circular(50)),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
+            },
             child: const Text(
               'Get Started',
               style: TextStyle(

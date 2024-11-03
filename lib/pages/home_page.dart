@@ -13,7 +13,8 @@ class _HomePageState extends State<HomePage> {
   final List<Friend> friends = [
     Friend(name: 'Alice', profileImage: 'assets/alice.png', upcomingEvents: 1),
     Friend(name: 'Bob', profileImage: 'assets/bob.png', upcomingEvents: 2),
-    Friend(name: 'Charlie', profileImage: 'assets/charlie.png', upcomingEvents: 0),
+    Friend(
+        name: 'Charlie', profileImage: 'assets/charlie.png', upcomingEvents: 0),
   ];
 
   String searchQuery = '';
@@ -28,20 +29,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List<Friend> filteredFriends = friends
-        .where((friend) => friend.name.toLowerCase().contains(searchQuery.toLowerCase()))
+        .where((friend) =>
+            friend.name.toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
 
     if (sortOption == 'Upcoming Events') {
-      filteredFriends.sort((a, b) => b.upcomingEvents.compareTo(a.upcomingEvents));
+      filteredFriends
+          .sort((a, b) => b.upcomingEvents.compareTo(a.upcomingEvents));
     } else if (sortOption == 'Alphabetically') {
       filteredFriends.sort((a, b) => a.name.compareTo(b.name));
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Friends & Events'),
+        title: const Center(child: Text('Home')),
         actions: [
           PopupMenuButton<String>(
+            icon: const Icon(Icons.sort_by_alpha),
             onSelected: (value) {
               setState(() {
                 sortOption = value;
@@ -66,7 +70,8 @@ class _HomePageState extends State<HomePage> {
               decoration: InputDecoration(
                 hintText: 'Search friends...',
                 prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               ),
               onChanged: (query) {
                 setState(() {
@@ -83,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               },
               child: Text('Create Your Own Event/List'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Color.fromRGBO(218, 128, 156, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -93,15 +98,15 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: filteredFriends.isEmpty
                 ? Center(
-              child: Text(
-                'No friends found.',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
-              ),
-            )
+                    child: Text(
+                      'No friends found.',
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    ),
+                  )
                 : RefreshIndicator(
-              onRefresh: _refreshFriends,
-              child: FriendList(friends: filteredFriends),
-            ),
+                    onRefresh: _refreshFriends,
+                    child: FriendList(friends: filteredFriends),
+                  ),
           ),
         ],
       ),

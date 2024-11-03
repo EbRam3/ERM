@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:trial15/main.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -150,7 +151,13 @@ class _LoginState extends State<Login> {
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20)))),
-                          onPressed: () async {
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MainNavigation()),
+                            );
+
                             // try {
                             //   isLoading = true;
                             //   setState(() {});
