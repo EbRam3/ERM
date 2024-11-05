@@ -1,10 +1,12 @@
 // main.dart
 import 'package:flutter/material.dart';
+import 'package:trial15/pages/logo_page.dart';
+import 'package:trial15/pages/pfTest.dart';
+import 'package:trial15/pages/event_list.dart';
 import 'package:trial15/utils/theme.dart';
 
+import 'pages/EventsPage.dart';
 import 'pages/home_page.dart';
-import 'pages/event_list_page.dart';
-import 'pages/logo_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +33,8 @@ class _MainNavigationState extends State<MainNavigation> {
   // List of pages to navigate between
   final List<Widget> _pages = [
     HomePage(),
-    EventListPage(),
+    EventPage(),
+    UserProfilePage(),
   ];
 
   void _onTabTapped(int index) {
